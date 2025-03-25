@@ -18,17 +18,17 @@ public class CognitoLogoutHandler extends SimpleUrlLogoutSuccessHandler {
     /**
      * The domain of your user pool.
      */
-    private String domain = "https://<user pool domain>";
+    private static final String DOMAIN = "https://<user pool domain>";
 
     /**
      * An allowed callback URL.
      */
-    private String logoutRedirectUrl = "<logout uri>";
+    private static final String LOGOUT_REDIRECT_URL = "<logout uri>";
 
     /**
      * The ID of your User Pool Client.
      */
-    private String userPoolClientId = "5r9dagi5svagti5v9999ar9rs5";
+    private static final String USER_POOL_CLIENT_ID = "5r9dagi5svagti5v9999ar9rs5";
 
     /**
      * Here, we must implement the new logout URL request. We define what URL to send our request to, and set out client_id and logout_uri parameters.
@@ -36,9 +36,9 @@ public class CognitoLogoutHandler extends SimpleUrlLogoutSuccessHandler {
     @Override
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         return UriComponentsBuilder
-                .fromUri(URI.create(domain + "/logout"))
-                .queryParam("client_id", userPoolClientId)
-                .queryParam("logout_uri", logoutRedirectUrl)
+                .fromUri(URI.create(DOMAIN + "/logout"))
+                .queryParam("client_id", USER_POOL_CLIENT_ID)
+                .queryParam("logout_uri", LOGOUT_REDIRECT_URL)
                 .encode(StandardCharsets.UTF_8)
                 .build()
                 .toUriString();
