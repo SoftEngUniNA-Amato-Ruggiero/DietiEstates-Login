@@ -5,7 +5,7 @@ spring:
         registration:
           cognito:
             client-id: 5r9dagi5svagti5v9999ar9rs5
-            client-secret: <client secret>
+            client-secret: ${COGNITO_CLIENT_SECRET}
             scope:
               - phone
               - openid
